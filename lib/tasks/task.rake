@@ -1,15 +1,14 @@
 require 'csv'
 
-
-    task :read do
-        CSV.foreach("./lib/assets/messages.en.csv") do |row|
-            Database.create!(row.to_hash)
-        end 
+    task read: :environment do
+        CSV.foreach("./lib/assets/messages.en.csv", headers: true) do |row|
+            CsvDate.create!(csv_id: row[0], source: row[1], target: row[2])
+        end
     end
     # end
 
-#     task :write do 
-    
+#     task :write do
+
 #         file = "#{Rails.root}/lib/assets/translate.en.csv"
 
 #         headers = ["id", "source", "target"]
@@ -24,4 +23,4 @@ require 'csv'
 #     task :run do
 #         ruby("translate.rb")
 #     end
-# end 
+# end

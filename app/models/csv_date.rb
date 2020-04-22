@@ -1,0 +1,2 @@
+class CsvDate < ApplicationRecord
+end
